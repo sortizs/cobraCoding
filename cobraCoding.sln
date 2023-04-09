@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobraCoding_API", "CobraCoding\CobraCoding_API.csproj", "{F86919A6-5E66-4F80-AA20-A4EEF1213A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CobraCoding_APP", "CobraCoding_APP\CobraCoding_APP.csproj", "{2893F8A9-0B83-4E42-A3E2-9F0B653C8CB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F86919A6-5E66-4F80-AA20-A4EEF1213A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86919A6-5E66-4F80-AA20-A4EEF1213A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F86919A6-5E66-4F80-AA20-A4EEF1213A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F86919A6-5E66-4F80-AA20-A4EEF1213A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2893F8A9-0B83-4E42-A3E2-9F0B653C8CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2893F8A9-0B83-4E42-A3E2-9F0B653C8CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2893F8A9-0B83-4E42-A3E2-9F0B653C8CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2893F8A9-0B83-4E42-A3E2-9F0B653C8CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78D4217E-086A-4DEE-B4ED-562ADC315DA0}
+	EndGlobalSection
+EndGlobal

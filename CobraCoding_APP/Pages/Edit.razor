@@ -1,0 +1,80 @@
+﻿@page "/editCar/{id:int}"
+@inject ICarService CarService
+
+<PageTitle>Edit car</PageTitle>
+
+<h1>Edit car information</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <EditForm Model="@car" OnSubmit="@UpdateCar">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <input type="hidden" value="@car.Id" />
+            <div class="form-group">
+                <label for="make">Make</label>
+                <InputText id="make" @bind-Value="car.Make" class="form-control"></InputText>
+                <ValidationMessage For="@(() => car.Make)" />
+            </div>
+            <div class="form-group">
+                <label for="model">Model</label>
+                <InputText id="model" @bind-Value="car.Model" class="form-control"></InputText>
+                <ValidationMessage For="@(() => car.Model)" />
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <InputNumber id="year" @bind-Value="car.Year" class="form-control"></InputNumber>
+                <ValidationMessage For="@(() => car.Year)" />
+            </div>
+            <div class="form-group">
+                <label for="doors">Doors</label>
+                <InputNumber id="doors" @bind-Value="car.Doors" class="form-control"></InputNumber>
+                <ValidationMessage For="@(() => car.Doors)" />
+            </div>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <InputText id="color" @bind-Value="car.Color" class="form-control"></InputText>
+                <ValidationMessage For="@(() => car.Color)" />
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <InputNumber id="price" @bind-Value="car.Price" class="form-control"></InputNumber>
+                <ValidationMessage For="@(() => car.Price)" />
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="/cars" class="btn btn-outline-dark">Back to List</a>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private Car car { get; set; } = new Car();
+
+    public Edit() { }
+
+    public Edit(NavigationManager navigationManager)
+    {
+        NavigationManager = navigationManager;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        car = await CarService.GetCarAsync(Id);
+    }
+
+    private async Task UpdateCar()
+    {
+        await CarService.PutCarAsync(Id, car);
+        NavigationManager.NavigateTo($"/detailCar/{Id}");
+    }
+
+}
+

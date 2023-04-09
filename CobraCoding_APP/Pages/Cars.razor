@@ -1,0 +1,62 @@
+﻿@page "/cars"
+@inject ICarService CarService
+
+<PageTitle>Cars List</PageTitle>
+
+<h1>Cars List</h1>
+
+<p>
+    <a class="btn btn-secondary" href="/createCar">Add new car</a>
+</p>
+@if (CarsList.Count > 0)
+{
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Doors</th>
+                <th>Color</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in CarsList)
+            {
+                <tr>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>@car.Year</td>
+                    <td>@car.Doors</td>
+                    <td>@car.Color</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="/editCar/@car.Id">Edit</a>
+                        <a class="btn btn-outline-success" href="/detailCar/@car.Id">Details</a>
+                        <a class="btn btn-outline-danger" href="/deleteCar/@car.Id">Delete</a>
+                        <a class="btn btn-outline-info" href="/guessPrice/@car.Id">Guess the Price</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><em>Loading...</em></p>
+}
+
+@code {
+    private List<Car> CarsList { get; set; } = new List<Car>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        CarsList = await CarService.GetCarsAsync();
+        foreach (var car in CarsList)
+        {
+            Console.WriteLine(car);
+        }
+    }
+
+}
+

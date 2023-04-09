@@ -1,0 +1,81 @@
+﻿@page "/guessPrice/{id:int}"
+@inject ICarService CarService
+
+<PageTitle>Guess the car price</PageTitle>
+
+<h1>Guess the Price!</h1>
+@if (guessed)
+{
+    <div class="alert alert-success" role="alert">
+        Great Job!
+    </div>
+}
+<hr />
+@if (car != null)
+{
+    <dl class="row">
+        <dt class="col-sm-2">
+            Make
+        </dt>
+        <dd class="col-sm-10">
+            @car.Make
+        </dd>
+        <dt class="col-sm-2">
+            Model
+        </dt>
+        <dd class="col-sm-10">
+            @car.Model
+        </dd>
+        <dt class="col-sm-2">
+            Year
+        </dt>
+        <dd class="col-sm-10">
+            @car.Year
+        </dd>
+        <dt class="col-sm-2">
+            Doors
+        </dt>
+        <dd class="col-sm-10">
+            @car.Doors
+        </dd>
+        <dt class="col-sm-2">
+            Color
+        </dt>
+        <dd class="col-sm-10">
+            @car.Doors
+        </dd>
+    </dl>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="input-group mb-3">
+            <div class="input-group-text" id="btnGroupAddon">Price</div>
+            <input type="number" class="form-control" @bind="guessPrice" required />
+            <button type="button" class="btn btn-info" @onclick="@CheckPrice">Check</button>
+        </div>
+    </div>
+}
+else
+{
+    <p><em>Loading...</em></p>
+}
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Car car { get; set; } = new Car();
+    private int guessPrice { get; set; }
+    private bool guessed { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        car = await CarService.GetCarAsync(Id);
+    }
+
+    private void CheckPrice()
+    {
+        guessed = Math.Abs(car.Price - guessPrice) <= 5000;
+    }
+
+}
+
